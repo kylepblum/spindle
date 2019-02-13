@@ -1,6 +1,13 @@
-function [hsB,dataB,hsC,dataC] = sarcSimDriver(t,gammaD,gammaS,delta_cdl)
+function [hsB,dataB,hsC,dataC] = sarcSimDriver(t,delta_f_activated,delta_cdl)
 time_step = t(2)-t(1);
+CHECK_SLACK = 1; 
 
+if numel(delta_f_activated) > 1
+    delta_f_delta_f_activated(1) = delta_f_activatedB;
+    delta_f_activated(2) = delta_f_activatedC;
+elseif numel(delta_f_activated) == 1
+    
+end
 
 % Make a half-sarcomere
 hsB = halfSarcBag();
@@ -54,7 +61,7 @@ for a = 1
                % against zero load.
                 
                % First, we evolve the distribution
-                hsB.forwardStep(time_step,0.0,0.0,gammaD(a,i),1,0)
+                hsB.forwardStep(time_step,0.0,0.0,delta_f_activated(a,i),1,0)
                 
                % Next, we iteratively search for the sarcomere length
                % that would give us zero load
@@ -75,7 +82,7 @@ for a = 1
                 
             else %length control
                 delta_hslB = delta_cdl(a,i);
-                hsB.forwardStep(time_step,delta_hslB,delta_cdl(a,i),gammaD(a,i),1,1);
+                hsB.forwardStep(time_step,delta_hslB,delta_cdl(a,i),delta_f_activated(a,i),1,1);
             end
             
             if slack_modeC
@@ -84,7 +91,7 @@ for a = 1
                 % against zero load.
                 
                 % First, we evolve the distribution
-                hsC.forwardStep(time_step,0.0,0.0,gammaS(a,i),1,0)
+                hsC.forwardStep(time_step,0.0,0.0,delta_f_activated(a,i),1,0)
                 
                 % Next, we iteratively search for the sarcomere length
                 % that would give us zero load
@@ -105,14 +112,14 @@ for a = 1
                 
             else %length control
                 delta_hslS = delta_cdl(a,i);
-                hsC.forwardStep(time_step,delta_hslS,delta_cdl(a,i),gammaS(a,i),1,1);
+                hsC.forwardStep(time_step,delta_hslS,delta_cdl(a,i),delta_f_activated(a,i),1,1);
             end
             
         else %Assume length control
             delta_hslB = delta_cdl(a,i);
-            hsB.forwardStep(time_step,delta_hslB,delta_cdl(a,i),gammaD(a,i),1,1);
+            hsB.forwardStep(time_step,delta_hslB,delta_cdl(a,i),delta_f_activated(a,i),1,1);
             delta_hslC = delta_cdl(a,i);
-            hsC.forwardStep(time_step,delta_hslC,delta_cdl(a,i),gammaS(a,i),1,1);
+            hsC.forwardStep(time_step,delta_hslC,delta_cdl(a,i),delta_f_activated(a,i),1,1);
         end
         
         % Store data

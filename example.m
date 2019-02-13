@@ -37,7 +37,7 @@ end
 % Use MATLAB's built-in parallel computing to run simulations and store
 % data: 
 parfor a = 1:numSims
-    [hsB(a),dataB(a),hsC(a),dataC(a)] = sarcSimDriver(t,delta_f_activated(a,:),delta_cdl(a,:));
+    [hsB(a),dataB(a),hsC(a),dataC(a)] = sarcSimDriver(t,delta_f_activated(a,:),delta_f_activated(a,:),delta_cdl(a,:));
     disp(['Done with simulation number ' num2str(a)])
 end
 
