@@ -2,7 +2,6 @@ classdef halfSarcBag < handle
     
     properties
         % These properties can be accessed from the driver script
-        time_step = 0.01;
         
         % INITIAL STATE PARAMETERS %
         cmd_length = 1300;
@@ -76,7 +75,7 @@ classdef halfSarcBag < handle
             obj.f = obj.f_parameters(1) * obj.bin_width * ...
                 exp(-obj.k_cb*10*((obj.x_bins).^2)/(1e18*1.381e-23*288));
             
-            obj.f = obj.f / (obj.time_step*1000); %scale for different time steps (default is 1ms
+            obj.f = obj.f / (time_step*1000); %scale for different time steps (default is 1ms
             
             %%% A --> D rate (asymmetric) %%%
             obj.g = zeros(size(obj.x_bins)); %Preallocate
@@ -84,9 +83,7 @@ classdef halfSarcBag < handle
                  abs(0.2*((obj.x_bins(obj.x_bins<-6)+6).^3));
             obj.g(obj.x_bins>=-3) = obj.g_parameters(1) + ...
                  0.3*((obj.x_bins(obj.x_bins>=-3)+3).^3);
-            obj.g = obj.g + 1; 
-            
-            obj.g = obj.g / (obj.time_step*1000);
+            obj.g = obj.g + 1; %sca
             
             % Limit max values
             obj.f(obj.f>obj.max_rate) = obj.max_rate;

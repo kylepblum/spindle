@@ -9,7 +9,6 @@ hsC = halfSarcChain();
 % Loop through the time-steps
 for a = 1
     for i=1:numel(t)
-        
         %This applies an a priori condition in which slack is likely
         %(Speeds up simulations by factor of ~3)
         if hsB.hs_force <= 1e3
