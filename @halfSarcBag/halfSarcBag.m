@@ -77,7 +77,7 @@ classdef halfSarcBag < handle
                 exp(-obj.k_cb*10*((obj.x_bins).^2)/(1e18*1.381e-23*288));
             
 %             obj.f = obj.f / (obj.time_step*1000); %scale for different time steps (default is 1ms)
-            obj.f = obj.f;
+            obj.f = obj.f/5;
 
             %%% A --> D rate (asymmetric) %%%
             obj.g = zeros(size(obj.x_bins)); %Preallocate
