@@ -15,9 +15,9 @@ classdef halfSarcChain < handle
         passive_force;
 
         % DISTRIBUTION BIN PARAMETERS %
-        bin_min = -10;      % min x value for myosin distributions in nm
-        bin_max = 10;       % max x value for myosin distributions in nm
-        bin_width = 0.25;    % width of bins for myosin distributions in nm
+        bin_min = -20;      % min x value for myosin distributions in nm
+        bin_max = 20;       % max x value for myosin distributions in nm
+        bin_width = 0.5;    % width of bins for myosin distributions in nm
         x_bins;             % array of x_bin values
         no_of_x_bins;       % no of x_bins
         
@@ -76,7 +76,8 @@ classdef halfSarcChain < handle
             obj.f = obj.f_parameters(1) * obj.bin_width * ...
                 exp(-obj.k_cb*5*(2*(obj.x_bins).^2)/(1e18*1.381e-23*288));
             
-            obj.f = obj.f / (obj.time_step*1000);
+%             obj.f = obj.f / (obj.time_step*1000);
+            obj.f = obj.f;
            
             %%% A --> D rate (asymmetric) %%%
             obj.g = zeros(size(obj.x_bins)); %Preallocate
@@ -86,8 +87,8 @@ classdef halfSarcChain < handle
                  0.5*((obj.x_bins(obj.x_bins>=-3)+3).^3);
             obj.g = obj.g + 3;
             
-            obj.g = obj.g / (obj.time_step*1000);
-
+%             obj.g = obj.g / (obj.time_step*1000);
+            obj.g = obj.g;
             
             % Limit max values
             obj.f(obj.f>obj.max_rate) = obj.max_rate;

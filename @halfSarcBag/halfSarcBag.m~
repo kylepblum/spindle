@@ -56,7 +56,7 @@ classdef halfSarcBag < handle
                             % cross-sectional area of 1 m^2
                             
         hsl_slack = 1050;   % slack length of half-sarcomere in nm
-        k_passive = 100;   % passive stiffness of half-sarcomere in
+        k_passive = 250;   % passive stiffness of half-sarcomere in
                             % N m^-2 nm^-1
 
     end
@@ -77,7 +77,7 @@ classdef halfSarcBag < handle
                 exp(-obj.k_cb*10*((obj.x_bins).^2)/(1e18*1.381e-23*288));
             
 %             obj.f = obj.f / (obj.time_step*1000); %scale for different time steps (default is 1ms)
-            obj.f = obj.f;
+            obj.f = obj.f/2;
 
             %%% A --> D rate (asymmetric) %%%
             obj.g = zeros(size(obj.x_bins)); %Preallocate
@@ -88,7 +88,7 @@ classdef halfSarcBag < handle
             obj.g = obj.g + 1; 
             
 %             obj.g = obj.g / (obj.time_step*1000);
-            obj.g = obj.g;
+            obj.g = obj.g/2;
             
             % Limit max values
             obj.f(obj.f>obj.max_rate) = obj.max_rate;
