@@ -1,4 +1,4 @@
-function [hsB,dataB,hsC,dataC] = sarcSimDriver(t,gammaD,gammaS,delta_cdl)
+function [hsB,dataB,hsC,dataC,flags] = sarcSimDriver(t,gammaD,gammaS,delta_cdl)
 time_step = t(2)-t(1);
 
 
@@ -115,34 +115,38 @@ for i=1:numel(t)
     
     % Store data
     try
-    dataB.f_activated(i) = hsB.f_activated;
-    dataB.f_bound(i) = hsB.f_bound;
-    dataB.f_overlap(i) = hsB.f_overlap;
-    dataB.cb_force(i) = hsB.cb_force;
-    
-    
-    dataB.passive_force(i) = hsB.passive_force;
-    dataB.hs_force(i) = hsB.hs_force;
-    dataB.hs_length(i) = hsB.hs_length;
-    dataB.cmd_length(i) = hsB.cmd_length;
-    dataB.bin_pops(:,i) = hsB.bin_pops;
-    dataB.no_detached(i) = hsB.no_detached;
-    
-    dataC.f_activated(i) = hsC.f_activated;
-    dataC.f_bound(i) = hsC.f_bound;
-    dataC.f_overlap(i) = hsC.f_overlap;
-    dataC.cb_force(i) = hsC.cb_force;
-    
-    
-    dataC.passive_force(i) = hsC.passive_force;
-    dataC.hs_force(i) = hsC.hs_force;
-    dataC.hs_length(i) = hsC.hs_length;
-    dataC.cmd_length(i) = hsC.cmd_length;
-    dataC.bin_pops(:,i) = hsC.bin_pops;
-    dataC.no_detached(i) = hsC.no_detached;
-    
+        dataB.f_activated(i) = hsB.f_activated;
+        dataB.f_bound(i) = hsB.f_bound;
+        dataB.f_overlap(i) = hsB.f_overlap;
+        dataB.cb_force(i) = hsB.cb_force;
+        
+        
+        dataB.passive_force(i) = hsB.passive_force;
+        dataB.hs_force(i) = hsB.hs_force;
+        dataB.hs_length(i) = hsB.hs_length;
+        dataB.cmd_length(i) = hsB.cmd_length;
+        dataB.bin_pops(:,i) = hsB.bin_pops;
+        dataB.no_detached(i) = hsB.no_detached;
+        
+        dataC.f_activated(i) = hsC.f_activated;
+        dataC.f_bound(i) = hsC.f_bound;
+        dataC.f_overlap(i) = hsC.f_overlap;
+        dataC.cb_force(i) = hsC.cb_force;
+        
+        
+        dataC.passive_force(i) = hsC.passive_force;
+        dataC.hs_force(i) = hsC.hs_force;
+        dataC.hs_length(i) = hsC.hs_length;
+        dataC.cmd_length(i) = hsC.cmd_length;
+        dataC.bin_pops(:,i) = hsC.bin_pops;
+        dataC.no_detached(i) = hsC.no_detached;
+
+        flags.error = 0;
+        
     catch
-        warning('DataStore Error!');
+        warning(['DataStore Error!' num2str(i)]);
+        flags.error = 1;
+        
     end
 
     
