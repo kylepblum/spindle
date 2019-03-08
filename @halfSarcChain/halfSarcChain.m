@@ -15,8 +15,8 @@ classdef halfSarcChain < handle
         passive_force;
 
         % DISTRIBUTION BIN PARAMETERS %
-        bin_min = -20;      % min x value for myosin distributions in nm
-        bin_max = 20;       % max x value for myosin distributions in nm
+        bin_min = -15;      % min x value for myosin distributions in nm
+        bin_max = 15;       % max x value for myosin distributions in nm
         bin_width = 0.5;    % width of bins for myosin distributions in nm
         x_bins;             % array of x_bin values
         no_of_x_bins;       % no of x_bins

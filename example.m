@@ -1,7 +1,7 @@
 tic
 clear,clc
 
-time_step = 0.01;  % Temporal precision (slow, but best at ~0.001s; faster but worse at higher steps)
+time_step = 0.005;  % Temporal precision (slow, but best at ~0.001s; faster but worse at higher steps)
 t = -7:time_step:6; % Time vector
 pertStart = 7/time_step;   % Usually >>1 to let model initialize
 numSims = 4;       % Number of simulations to run in parallel
@@ -42,7 +42,7 @@ parfor a = 1:numSims
 end
 
 toc;
-hold on; plotyy(dataB(1).t,dataB(1).hs_force,dataC(1).t,dataC(1).hs_force)
+hold on; plotyy(dataB(3).t,dataB(3).hs_force,dataC(3).t,dataC(3).hs_force)
 
 [r,rd,rs] = sarc2spindle(dataB(4),dataC(4),1,1,0.03,1,0);
 figure
