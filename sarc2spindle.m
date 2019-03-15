@@ -10,6 +10,8 @@ Fs(Fs<0) = 0;
 % Yank-dominant fiber (dynamic fiber)
 Fd = dataB.hs_force; %force
 Fd(Fd<0) = 0; %threshold
+
+
 Y = diff(Fd)./diff(t); %yank
 Y(Y<0) = 0; %threshold
 Y(end+1) = Y(end); %make Y same length as F
