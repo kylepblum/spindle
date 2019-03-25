@@ -55,8 +55,8 @@ classdef halfSarcBag < handle
                             % number of cbs in a half-sarcomere with a
                             % cross-sectional area of 1 m^2
                             
-        hsl_slack = 1050;   % slack length of half-sarcomere in nm
-        k_passive = 100;   % passive stiffness of half-sarcomere in
+        hsl_slack = 1200;   % slack length of half-sarcomere in nm
+        k_passive = 250;   % passive stiffness of half-sarcomere in
                             % N m^-2 nm^-1
 
     end
@@ -81,8 +81,8 @@ classdef halfSarcBag < handle
 
             %%% A --> D rate (asymmetric) %%%
             obj.g = zeros(size(obj.x_bins)); %Preallocate
-            obj.g(obj.x_bins<-6) = obj.g_parameters(1) + ...
-                 abs(0.2*((obj.x_bins(obj.x_bins<-6)+6).^3));
+            obj.g(obj.x_bins<-1) = obj.g_parameters(1) + ...
+                 abs(0.3*((obj.x_bins(obj.x_bins<-1)+1).^3));
             obj.g(obj.x_bins>=-3) = obj.g_parameters(1) + ...
                  0.3*((obj.x_bins(obj.x_bins>=-3)+3).^3);
             obj.g = obj.g + 1; 
