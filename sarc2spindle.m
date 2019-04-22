@@ -15,7 +15,7 @@ Fd(Fd<0) = 0; %threshold
 Y = diff(Fd)./diff(t); %yank
 Y(Y<0) = 0; %threshold
 Y(end+1) = Y(end); %make Y same length as F
-Y(Fd<8e4) = 0; %Chirp
+% Y(Fd<8e4) = 0; %Chirp
 % Y(Fd<8e4) = 0; %Most of the simulations
 
 
