@@ -6,6 +6,9 @@ time_step = t(2)-t(1);
 hsB = halfSarcBag();
 hsC = halfSarcChain();
 
+% hsB = halfSarcBagSym();
+% hsC = halfSarcChainSym();
+
 % Loop through the time-steps
 for i=1:numel(t)
     %This applies an a priori condition in which slack is likely
