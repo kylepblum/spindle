@@ -26,7 +26,8 @@ classdef halfSarcChain < handle
         power_stroke = 2.5;   % Cross-bridge power-stroke in nm
                 
         % PARAMETERS RELATED TO FORWARD AND REVERSE RATES %
-        f_parameters = 2.5e1;
+%         f_parameters = 2.5e1;
+        f_parameters = 1e2;
         g_parameters = [0.3 0.01 4000 50];
                             
 

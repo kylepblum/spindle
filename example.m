@@ -2,8 +2,8 @@ tic
 clear,clc
 
 time_step = 0.001;  % Temporal precision (slow, but best at ~0.001s; faster but worse at higher steps)
-t = -7:time_step:6; % Time vector
-pertStart = 7/time_step;   % Usually >>1 to let model initialize
+t = -1:time_step:6; % Time vector
+pertStart = 1/time_step;   % Usually >>1 to let model initialize
 numSims = 4;       % Number of simulations to run in parallel
 
 % Initialize controlled length trajectories for all simulaitons - must be
